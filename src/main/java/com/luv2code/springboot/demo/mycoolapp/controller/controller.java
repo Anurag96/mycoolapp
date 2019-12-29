@@ -1,5 +1,6 @@
 package com.luv2code.springboot.demo.mycoolapp.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,6 +9,10 @@ import java.time.LocalDateTime;
 @RestController
 public class controller {
 
+    @Value("${coach.name}")
+    private String coachName;
+    @Value("${team.name}")
+    private String teamName;
     @GetMapping("/")
     public String sayHello(){
 
@@ -22,10 +27,10 @@ public class controller {
 
     }
 
-    @GetMapping("/fortune")
+    @GetMapping("/props")
     public String fortuneToday()
     {
-        return "fortune";
+        return "Team name is : "+teamName+" , Coach name is : "+coachName;
 
     }
 }
